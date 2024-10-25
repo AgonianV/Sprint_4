@@ -24,6 +24,9 @@ class TestBooksCollector:
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
+    def test_genre_len_list(self):
+        collector = BooksCollector()
+        assert len(collector.genre) == 5
     @pytest.mark.parametrize('title_input', ['Love', 'Не-что!', '1', ' '])
     def test_add_new_book_same_book_title(self, title_input):
         collector = BooksCollector()
@@ -75,7 +78,7 @@ class TestBooksCollector:
         assert collectors.get_books_genre() == {'Вверх': 'Мультфильмы', 'Дюна': 'Фантастика', 'Мгла': 'Ужасы'}
 
 
-    def test_get_books_for_children_add_one_book(self):
+    def test_get_books_for_children_add_not_adult_book(self):
         collectors = BooksCollector()
         collectors.add_new_book('Винни Пух')
         collectors.set_book_genre('Винни Пух', 'Мультфильмы')
