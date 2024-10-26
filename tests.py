@@ -5,22 +5,6 @@ import pytest
 # обязательно указывать префикс Test
 class TestBooksCollector:
 
-    # пример теста:
-    # обязательно указывать префикс test_
-    # дальше идет название метода, который тестируем add_new_book_
-    # затем, что тестируем add_two_books - добавление двух книг
-    def test_add_new_book_add_two_books(self):
-        # создаем экземпляр (объект) класса BooksCollector
-        collector = BooksCollector()
-
-        # добавляем две книги
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        collector.add_new_book('Что делать, если ваш кот хочет вас убить')
-
-        # проверяем, что добавилось именно две
-        # словарь books_rating, который нам возвращает метод get_books_rating, имеет длину 2
-        assert len(collector.get_books_rating()) == 2
-
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
@@ -96,11 +80,9 @@ class TestBooksCollector:
         collectors = BooksCollector()
 
         collectors.add_new_book('Зона')
-        collectors.set_book_genre('Зона', 'Ужасы')
         collectors.add_book_in_favorites('Зона')
 
         collectors.add_new_book('Луна')
-        collectors.set_book_genre('Луна', 'Фантастика')
         collectors.add_book_in_favorites('Луна')
         assert collectors.favorites == ['Зона', 'Луна']
 
@@ -108,16 +90,14 @@ class TestBooksCollector:
         collectors = BooksCollector()
 
         collectors.add_new_book('Зона')
-        collectors.set_book_genre('Зона', 'Ужасы')
         collectors.add_book_in_favorites('Зона')
 
         collectors.add_new_book('Луна')
-        collectors.set_book_genre('Луна', 'Фантастика')
         collectors.add_book_in_favorites('Луна')
-        if len(collectors.favorites) == 2:
-            collectors.delete_book_from_favorites('Зона')
-            collectors.delete_book_from_favorites('Луна')
-            assert  len(collectors.favorites) == 0
+
+        collectors.delete_book_from_favorites('Зона')
+        collectors.delete_book_from_favorites('Луна')
+        assert  len(collectors.favorites) == 0
 
 
     def test_get_list_of_favorites_books_add_five_books(self):
